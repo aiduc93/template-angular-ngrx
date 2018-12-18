@@ -1,0 +1,54 @@
+$col-count: 12;
+
+@function calculateRem($size, $font-base: $font-size-base) {
+  $remSize: ($size / $font-base) * 1rem;
+  @return $remSize;
+}
+
+// create column grid
+@function col-pct($columns, $total-column: $col-count) {
+    @return unquote((100 / $total-column) * $columns + "%");
+}
+
+@function str-replace($string, $search, $replace: "") {
+  $index: str-index($string, $search);
+  @if $index {
+    @return str-slice($string, 1, $index - 1)+$replace+str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+  @return $string;
+}
+
+@mixin font-face($name, $path, $weight: null, $style: null, $exts: eot otf woff2 woff ttf svg) {
+  $src: null;
+  $extmods: ( eot: "?#iefix", svg: "#" + str-replace($name, " ", "_"));
+  $formats: ( eot: "embedded-opentype", otf: "opentype", ttf: "truetype");
+  @each $ext in $exts {
+    $extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+    $format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+    $src: append($src, url(quote($path + "." + $extmod)) format(quote($format)), comma);
+  }
+  @font-face {
+    font-family: quote($name);
+    src: $src;
+    font-weight: $weight;
+    font-style: $style;
+    font-display: swap;
+  }
+}
+
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin no-bullets {
+	list-style: none;
+}
+
+@mixin no-margin-padding() {
+  margin: 0;
+  padding: 0;
+}

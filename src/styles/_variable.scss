@@ -1,0 +1,42 @@
+//  **********Typography**********
+$font-family-sans-serif: 'Montserrat', Arial, sans-serif;
+$font-size-base: 20px;
+
+// **********Grid**********
+// phone
+$screen-xs: 480px;
+$screen-xs-min: $screen-xs;
+$screen-mobile-min: $screen-xs-min;
+
+// tablet
+$screen-sm: 768px;
+$screen-sm-min: $screen-sm;
+$screen-tablet-min: $screen-sm-min;
+
+// landscape-tablet
+$screen-md: 1024px;
+$screen-md-min: $screen-md;
+
+// desktop
+$screen-lg: 1280px;
+$screen-lg-min: $screen-lg;
+$screen-desktop: $screen-lg-min;
+
+$screen-xs-max: ($screen-sm-min - 1);
+$screen-sm-max: ($screen-md-min - 1);
+$screen-md-max: ($screen-lg-min - 1);
+
+$screen-desktop-min: 992px;
+$screen-tablet-max: $screen-desktop-min - 1;
+$screen-mobile-max: $screen-xs-max;
+
+// **********Color**********
+$black: #000;
+$white: #fff;
+
+$color: $black;
+$bgcolor: $white;
+$text-color: $color;
+$placeholder-color: $color;
+
+$yellow: #FFDB00;

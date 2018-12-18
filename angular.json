@@ -17,19 +17,39 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/html",
+            "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "/assets"
+              },
+              {
+                "glob": "favicon.ico",
+                "input": "src",
+                "output": "/"
+              }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles/_all.scss",
+              "src/styles.scss",
+              "./node_modules/owl.carousel/dist/assets/owl.carousel.css",
+              "./node_modules/owl.carousel/dist/assets/owl.theme.default.css"
             ],
-            "scripts": []
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles",
+                "src/styles/_all.scss"
+              ]
+            },
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/owl.carousel/dist/owl.carousel.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -122,5 +142,5 @@
       }
     }
   },
-  "defaultProject": "html"
+  "defaultProject": "angular-ngrx"
 }
